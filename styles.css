@@ -1,0 +1,238 @@
+/* --- Variables de Color Únicas --- */
+:root {
+    --color-vino: #581845;
+    --color-vino-light: #900c3f;
+    --color-rosa: #ffbaf7;
+    --color-rosa-pastel: #fff0fc;
+    --color-azul: #1a4cab;
+    --color-azul-deep: #0f2d69;
+    --text-dark: #2d1e2f;
+    --shadow: rgba(88, 24, 69, 0.15);
+    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --- Animaciones Keyframes --- */
+@keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulseBorder {
+    0% { box-shadow: 0 0 0 0 rgba(144, 12, 63, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(144, 12, 63, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(144, 12, 63, 0); }
+}
+
+/* --- Base --- */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Fondo degradado vivo y animado */
+    background: linear-gradient(-45deg, var(--color-rosa), #ffe3fa, #e6f0ff, var(--color-rosa));
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- Encabezado --- */
+header {
+    background: linear-gradient(135deg, var(--color-azul), var(--color-vino));
+    color: white;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    box-shadow: 0 4px 20px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* --- Navegación --- */
+nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(88, 24, 69, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: var(--color-vino);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 1.2rem 1.5rem;
+    display: block;
+    transition: var(--transition);
+    position: relative;
+}
+
+/* Efecto de línea inferior único en Hover */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--color-azul);
+    transition: var(--transition);
+    transform: translateX(-50%);
+}
+
+nav ul li a:hover {
+    color: var(--color-azul);
+    background: rgba(255, 186, 247, 0.2);
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* --- Estructura Principal --- */
+main {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 30px;
+    animation: fadeInUp 1s ease;
+}
+
+/* Artículos y Secciones */
+article {
+    flex: 3;
+}
+
+section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--color-azul);
+    transition: var(--transition);
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px var(--shadow);
+    border-left-color: var(--color-vino);
+}
+
+/* Imágenes únicas */
+section img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 15px;
+    transition: var(--transition);
+    filter: grayscale(20%);
+}
+
+section img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+    animation: pulseBorder 1.5s infinite;
+}
+
+/* --- Barra Lateral (Aside) --- */
+aside {
+    flex: 1;
+    /* Efecto Glassmorphism (Cristal) */
+    background: rgba(88, 24, 69, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(88, 24, 69, 0.1);
+    padding: 25px;
+    border-radius: 16px;
+    height: fit-content;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+aside h3 {
+    color: var(--color-vino);
+    border-bottom: 2px solid var(--color-rosa);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* --- Pie de Página --- */
+footer {
+    background: var(--color-vino);
+    color: var(--color-rosa-pastel);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    border-top: 4px solid var(--color-azul);
+}
+
+/* --- Responsividad Corregida y Limpia --- */
+@media (max-width: 992px) {
+    main {
+        flex-direction: column;
+        margin: 20px auto;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li a {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    header {
+        padding: 1.5rem 1rem;
+    }
+    
+    section {
+        padding: 15px;
+    }
+    
+    aside {
+        margin-top: 10px;
+    }
+}
